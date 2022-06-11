@@ -36,3 +36,156 @@
     transform: rotate(360deg);
   }
 }
+
+/* app.js */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  /* box-sizing: border-box; */
+}
+
+input {
+  font-family: 'Comfortaa', cursive;
+  font-size: 15px;
+  border: none;
+  padding: 12px 5px;
+  border-bottom: 1px solid rgb(164, 164, 164);
+}
+
+input:focus {
+  border-bottom: 1px solid white;
+  border-radius: 3px;
+  box-shadow: 0px 0px 14px 3px rgba(117, 74, 136, 0.2);
+  outline: none;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+.conteiner {
+  padding: 2.5vh 5vw;
+}
+
+.material-symbols-outlined { /* иконки */
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.wrapper {
+  width: 100wv;
+  height: 100wh;
+}
+
+/* header.js */
+
+.header-wrapper {
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: rgb(117, 74, 136); */
+  background-color: rgb(45, 45, 45);
+  color: white;
+}
+
+.header-date {
+  font-size: 35px;
+}
+
+.header-button-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.header-button {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  /* color: rgb(117, 74, 136); */
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-button-content {
+  font-size: 55px;
+}
+
+/* noteDateConteiner.js */
+
+.note-date-conteiner {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+}
+
+.note-date-weekday-conteiner {
+  display: flex;
+  flex-direction: row;
+}
+
+.note-date-weekends-conteiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.note-common-conteiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 4vw;
+}
+
+.wrapper-conteiner {
+  display: flex;
+  flex-direction: column;
+}
+
+/* weekday.js weekends.js */
+
+.note-date-wrapper {
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-date-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: 0 5px;
+  border-bottom: 3px solid black;
+  margin-bottom: 10px;
+}
+
+.note-date-name-day {
+  color: rgb(164, 164, 164);
+  font-weight: normal;
+}
+
+.note-date-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0px 4px;
+}
+
+/* common.js */
+
+.note-common-input-wrapper {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+}
