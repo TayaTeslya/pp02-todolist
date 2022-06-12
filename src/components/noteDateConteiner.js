@@ -20,10 +20,10 @@ function NoteDateConteiner() {
     // let monday = new Date("2022-06-28");
     // let mondayToday = new Date("2022-02-28"); //28.02 - 6.03
     // let monday = new Date("2022-02-28");
-    let mondayToday = new Date(); //6.06-12.06
-    let monday = new Date();
-    // const [monday, setMonday] = useState(mondayToday.getDate());
-    monday.setDate(mondayToday.getDate() - (mondayToday.getDay() + 6) % 7);
+    // let monday = new Date();
+    let mondayToday = new Date(); //6.06-12.06 - изначальное значение при запуске (текущая неделя)
+    mondayToday.setDate(mondayToday.getDate() - (mondayToday.getDay() + 6) % 7);
+    const [monday, setMonday] = useState(mondayToday);
 
     
 
