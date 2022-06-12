@@ -29,15 +29,18 @@ function NoteDateConteiner(props) {
             commonNotes.forEach(row => {
                 switch (row['columnCommonNote']) {
                     case 1:
-                        first.push(row['textCommonNote']);
+                        // first.push(row['textCommonNote']);
+                        first.push(row);
                         break;
     
                     case 2:
-                        second.push(row['textCommonNote']);
+                        // second.push(row['textCommonNote']);
+                        second.push(row);
                         break;
     
                     case 3:
-                        third.push(row['textCommonNote']);
+                        // third.push(row['textCommonNote']);
+                        third.push(row);
                         break;
                 
                     default:

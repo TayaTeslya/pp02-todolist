@@ -1,4 +1,6 @@
 import '../../App.css';
+import Input from './input';
+
 
 function Weekday(props) {
   return (
@@ -8,14 +10,14 @@ function Weekday(props) {
             <h2 className="note-date-name-day">{props.day}</h2>
         </div>
         <div className="note-date-input-wrapper">
-            <input value="Заметка 1"/>
-            <input value="Заметка 2"/>
-            <input value="Заметка 3"/>
-            <input value="Заметка 4"/>
-            <input value="Заметка 5"/>
-            <input value="Заметка 6"/>
-            <input value="Заметка 7"/>
-            <input value="Заметка 8"/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
+          <Input name="weekNotes" note=""/>
         </div>
     </div>
   );
