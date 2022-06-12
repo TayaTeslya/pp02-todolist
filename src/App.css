@@ -188,4 +188,5 @@ h2 {
   width: 30vw;
   display: flex;
   flex-direction: column;
+  gap: 6px;
 }
