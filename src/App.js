@@ -3,7 +3,6 @@ import Header from './components/header.js';
 import NoteDateConteiner from './components/noteDateConteiner.js';
 
 
-
 function App() {
   return (
     <div className="wrapper">
@@ -12,5 +11,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
