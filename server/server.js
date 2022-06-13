@@ -26,6 +26,7 @@ app.all('*', function(req, res, next) {
 });
   
 
+
 app.get("/weekNotes", function(req, res) {
     connection.query(
         'select * from weekNotes where (dateWeekNote >= ' + req.query.firstDateNotes + ' and dateWeekNote <= ' + req.query.lastDateNotes + ')',
@@ -35,56 +36,14 @@ app.get("/weekNotes", function(req, res) {
     ); 
 });
 
-
-app.get("/commonNotes", function(req, res) {
-    connection.query(
-        'select * from commonNotes',
-        function(err, results, fields) {
-            res.send(results);
-        }
-    ); 
-});
-
-
-app.delete("/weekNotes", function(req, res) {
-    connection.query(
-        'delete from weekNotes where idWeekNote = ' + req.query.idWeekNote,
-        function(err, results, fields) {
-            res.send(err);
-        }
-    ); 
-});
-
-
-app.delete("/commonNotes", function(req, res) {
-    connection.query(
-        'delete from commonNotes where idCommonNote = ' + req.query.idCommonNote,
-        function(err, results, fields) {
-            res.send(err);
-        }
-    ); 
-});
-
-
 app.post('/weekNotes', function(req, res) {
     connection.query(
-        'insert into weekNotes (dateWeekNote, textWeekNote) values (' + req.query.dateWeekNote + ', ' + req.query.textWeekNote + ')',
+        'insert into weekNotes (dateWeekNote, textWeekNote) values (' + req.body.dateWeekNote + ', ' + req.body.textWeekNote + ')',
         function(err, results, fields) {
             res.send(err);
         }
     ); 
 });
-
-
-app.post('/commonNotes', function(req, res) {
-    connection.query(
-        'insert into commonNotes (dateCommonNote, textCommonNote) values (' + req.query.dateCommonNote + ', ' + req.query.textCommonNote + ')',
-        function(err, results, fields) {
-            res.send(err);
-        }
-    ); 
-});
-
 
 app.put('/weekNotes', function(req, res) {
     connection.query(
@@ -99,14 +58,50 @@ app.put('/weekNotes', function(req, res) {
     );
 });
 
+app.delete("/weekNotes", function(req, res) {
+    connection.query(
+        'delete from weekNotes where idWeekNote = ' + req.query.idWeekNote,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+
+
+app.get("/commonNotes", function(req, res) {
+    connection.query(
+        'select * from commonNotes',
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.post('/commonNotes', function(req, res) {
+    connection.query(
+        'insert into commonNotes (columnCommonNote, textCommonNote) values ("' + req.body.columnCommonNote + '", "' + req.body.textCommonNote + '")',
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
 
 app.put('/commonNotes', function(req, res) {
     connection.query(
-        ('update commonNotes set dateCommonNote = ' + req.query.dateCommonNote + 
-        ', textCommonNote = ' + req.query.textCommonNote + 
-        ', colorCommonNote = ' + req.query.colorCommonNote + 
-        ', statusCommonNote = ' + req.query.statusCommonNote + 
-        ' where idCommonNote = ' + req.query.idCommonNote),
+        ('update commonNotes set textCommonNote = "' + req.body.textCommonNote + 
+        '", colorCommonNote = "' + req.body.colorCommonNote + 
+        '", statusCommonNote = "' + req.body.statusCommonNote + 
+        '" where idCommonNote = "' + req.query.idCommonNote + '"'),
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+app.delete("/commonNotes", function(req, res) {
+    connection.query(
+        'delete from commonNotes where idCommonNote = ' + req.query.idCommonNote,
         function(err, results, fields) {
             res.send(err);
         }

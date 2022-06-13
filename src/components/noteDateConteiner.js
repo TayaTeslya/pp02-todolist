@@ -54,9 +54,6 @@ function NoteDateConteiner(props) {
                         break;
                 }
             });
-            // console.log(firstColumn);
-            // console.log(secondColumn);
-            // console.log(thirdColumn);
             setFirstColumn(first);
             setSecondColumn(second);
             setThirdColumn(third);
@@ -80,9 +77,9 @@ function NoteDateConteiner(props) {
             </div>
         </div>
         <div className="note-common-conteiner">
-            <Common reload={changeReload} notes={firstColumn}/>
-            <Common reload={changeReload} notes={secondColumn}/>
-            <Common reload={changeReload} notes={thirdColumn}/> 
+            <Common reload={changeReload} notes={firstColumn} column="1"/>
+            <Common reload={changeReload} notes={secondColumn} column="2"/>
+            <Common reload={changeReload} notes={thirdColumn} column="3"/> 
         </div>
     </div>
   );
