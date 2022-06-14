@@ -78,8 +78,8 @@ function NoteDateConteiner(props) {
         </div>
         <div className="note-common-conteiner">
             <Common reload={changeReload} notes={firstColumn} column="1"/>
-            <Common reload={changeReload} notes={secondColumn} column="2"/>
-            <Common reload={changeReload} notes={thirdColumn} column="3"/> 
+            {/* <Common reload={changeReload} notes={secondColumn} column="2"/>
+            <Common reload={changeReload} notes={thirdColumn} column="3"/>  */}
         </div>
     </div>
   );

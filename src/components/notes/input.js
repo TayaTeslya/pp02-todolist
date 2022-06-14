@@ -76,31 +76,19 @@ function Input(props) {
 
 
     const [note, setNote] = useState('');
-    
+
     useEffect(() => {
-        setNote(''); //очищает при удалении (сдвиг)
-        //setIsPost(true);
+        setNote(null); //очищает при удалении (сдвиг)
         if (props.note['textCommonNote']) {
             setNote(props.note['textCommonNote']);
+        } else {
+            setNote('');
         }
-        // setIsPost(!Boolean(props.note['textCommonNote']));
         setIsPost(!Boolean(note));
     }, [props.note]);
 
-    // useEffect(() => {
-    //     setNote(null); //очищает при удалении (сдвиг)
-    //     //setIsPost(true);
-    //     if (props.note['textCommonNote']) {
-    //         setNote(props.note['textCommonNote']);
-    //     } else {
-    //         setNote('');
-    //     }
-    //     // setIsPost(!Boolean(props.note['textCommonNote']));
-    //     setIsPost(!Boolean(note));
-    // }, [props.note]);
-
     return (
-        <input value={(note != '') ? note : ''} onChange={((event) => {
+        <input value={note} onChange={((event) => {
             setNote(event.target.value);
         })} onBlur={((event) => {
             setIsChange(event.target.value);
