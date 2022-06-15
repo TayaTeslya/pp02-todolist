@@ -3,33 +3,30 @@ import { useEffect, useState } from 'react';
 
 
 function Input(props) {
-    // const [isPost, setIsPost] = useState((props.note['textCommonNote']) ? true : false);
-    const [isPost, setIsPost] = useState(true);
 
+    const [isPost, setIsPost] = useState(true);
     const [isChange, setIsChange] = useState(null);
 
-    // let is = null;
+    // useEffect(() => {
+    //     if (props.column == 1) {
+    //         console.log(isPost);
+    //     }
+    //     console.log('-');
+    // }, [isPost]);
 
     useEffect(() => {
-        if (props.column == 1) {
-            console.log(isPost);
-        }
-        console.log('-');
-    }, [isPost]);
-
-    useEffect(() => {
-        // if (event.target.value == '') {
+        console.log('упс');
         if (isChange === '') {
-            console.log('удаление');
+            // console.log('удаление');
             deleteCommonNote();
             setIsPost(true);
         } else if (isChange != null) {
-            if (isPost) {
-                console.log('добавление');
+            if (isPost && (!props.note['idCommonNote'] || !props.note['idWeekNote'])) {
+                // console.log('добавление');
                 addCommonNote();
                 setIsPost(false);
             } else {
-                console.log('изменение');
+                // console.log('изменение');
                 changeCommonNote();
                 setIsPost(false);
             }
@@ -37,7 +34,7 @@ function Input(props) {
     }, [isChange])
     
     function deleteCommonNote() {
-        fetch('http://localhost:3001/commonNotes?idCommonNote=' + props.note['idCommonNote'], {
+        fetch('http://localhost:3001/' + props.table + 's?id' + props.table + '=' + (props.note['idCommonNote'] || props.note['idWeekNote']), {
             method: 'DELETE'
         }).then((err) => {
             setNote('');
@@ -60,7 +57,7 @@ function Input(props) {
     }
 
     function changeCommonNote() {
-        fetch('http://localhost:3001/commonNotes?idCommonNote=' + props.note['idCommonNote'], {
+        fetch('http://localhost:3001/' + props.table + 's?id' + props.table + '=' + (props.note['idCommonNote'] || props.note['idWeekNote']), {
             method: 'PUT',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({
@@ -74,72 +71,29 @@ function Input(props) {
         });
     }
 
-
     const [note, setNote] = useState('');
 
     useEffect(() => {
         setNote(null); //очищает при удалении (сдвиг)
-        if (props.note['textCommonNote']) {
+        setIsChange(null);
+        if (props.note != '') {
             setNote(props.note['textCommonNote']);
         } else {
             setNote('');
         }
         setIsPost(!Boolean(note));
-    }, [props.note]);
+    }, [props.change]);
 
     return (
         <input value={note} onChange={((event) => {
             setNote(event.target.value);
         })} onBlur={((event) => {
-            setIsChange(event.target.value);
-            //changeNote(event);
+            if (props.note['textCommonNote'] != note) { //чтобы лишний раз не обращаться к серверу при изменении неизменении
+                setIsChange(event.target.value);
+            }
         })}/> 
     );
+
 }
 
 export default Input;
-
-// function changeNote(event) {
-//     if (event.target.value == '') { //если пустота, то удаляем запись в бд
-//         setIsPost(false);
-//         fetch('http://localhost:3001/commonNotes?idCommonNote=' + props.note['idCommonNote'], {
-//             method: 'DELETE'
-//         }).then((err) => {
-//             setNote('');
-//             // isPost = false;
-//             props.reload(true);
-//         });
-//     } else { //если что-то лежит в инпуте, изменяем запись в бд ИЛИ добавляем
-//         if (isPost != true) { //добавляем в БД
-//             setIsPost(true);
-//             console.log(isPost);
-//              // isPost = true;
-//             fetch('http://localhost:3001/commonNotes', {
-//                 method: 'POST', 
-//                 headers: {'Content-Type' : 'application/json'}, //настройки для серва (формат данных и тп) 
-//                 body: JSON.stringify({
-//                     textCommonNote: note, 
-//                     columnCommonNote: props.column
-//                 })//заметка - объект в виде json
-//             }).then((err) => {
-//                 setNote('');
-//                 props.reload(true);
-//             }).then(() => {
-//                 // debugger;
-//             });
-//         } else { //изменяем
-//             fetch('http://localhost:3001/commonNotes?idCommonNote=' + props.note['idCommonNote'], {
-//                 method: 'PUT',
-//                 headers: {'Content-Type' : 'application/json'},
-//                 body: JSON.stringify({
-//                     textCommonNote: note,
-//                     colorCommonNote: 'none',
-//                     statusCommonNote: 'false'
-//                 })
-//             }).then((err) => {
-//                 setNote('');
-//                 props.reload(true);
-//             });
-//         } 
-//     }
-// }

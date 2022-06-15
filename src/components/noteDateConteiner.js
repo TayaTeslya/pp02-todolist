@@ -6,9 +6,11 @@ import { useEffect, useState } from 'react';
 
 
 Date.prototype.addDays = function(days) {
+
     let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
+    
 }
 
 
@@ -16,7 +18,11 @@ function NoteDateConteiner(props) {
     function changeReload(bool) {
         setFirstColumn(firstColumn.filter(row => false));
         setFirstColumn([]);
-        setReload(bool);
+        setSecondColumn(firstColumn.filter(row => false));
+        setSecondColumn([]);
+        setThirdColumn(firstColumn.filter(row => false));
+        setThirdColumn([]);
+        setReload(bool);    
     }
     const [reload, setReload] = useState(false);
     let commonNotes = [];
@@ -78,8 +84,8 @@ function NoteDateConteiner(props) {
         </div>
         <div className="note-common-conteiner">
             <Common reload={changeReload} notes={firstColumn} column="1"/>
-            {/* <Common reload={changeReload} notes={secondColumn} column="2"/>
-            <Common reload={changeReload} notes={thirdColumn} column="3"/>  */}
+            <Common reload={changeReload} notes={secondColumn} column="2"/>
+            <Common reload={changeReload} notes={thirdColumn} column="3"/> 
         </div>
     </div>
   );

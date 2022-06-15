@@ -51,7 +51,7 @@ app.put('/weekNotes', function(req, res) {
         ', textWeekNote = ' + req.query.textWeekNote + 
         ', colorWeekNote = ' + req.query.colorWeekNote + 
         ', statusWeekNote = ' + req.query.statusWeekNote + 
-        ' where idWeekNote = ' + req.query.idWeekNote),
+        ' where idWeekNote = ' + req.query.idweekNote),
         function(err, results, fields) {
             res.send(err);
         }
@@ -60,7 +60,7 @@ app.put('/weekNotes', function(req, res) {
 
 app.delete("/weekNotes", function(req, res) {
     connection.query(
-        'delete from weekNotes where idWeekNote = ' + req.query.idWeekNote,
+        'delete from weekNotes where idWeekNote = ' + req.query.idweekNote,
         function(err, results, fields) {
             res.send(err);
         }
@@ -92,7 +92,7 @@ app.put('/commonNotes', function(req, res) {
         ('update commonNotes set textCommonNote = "' + req.body.textCommonNote + 
         '", colorCommonNote = "' + req.body.colorCommonNote + 
         '", statusCommonNote = "' + req.body.statusCommonNote + 
-        '" where idCommonNote = "' + req.query.idCommonNote + '"'),
+        '" where idCommonNote = "' + req.query.idcommonNote + '"'),
         function(err, results, fields) {
             res.send(err);
         }
@@ -101,7 +101,7 @@ app.put('/commonNotes', function(req, res) {
 
 app.delete("/commonNotes", function(req, res) {
     connection.query(
-        'delete from commonNotes where idCommonNote = ' + req.query.idCommonNote,
+        'delete from commonNotes where idCommonNote = ' + req.query.idcommonNote,
         function(err, results, fields) {
             res.send(err);
         }
