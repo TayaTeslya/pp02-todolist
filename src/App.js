@@ -14,10 +14,7 @@ Date.prototype.addDays = function(days) {
 
 function App() {
 
-  // let mondayToday = new Date("2022-10-2"); //26.09 - 2.10
-  // let mondayToday = new Date("2022-06-28"); //28.02 - 03.07
-  // let mondayToday = new Date("2022-02-28"); //28.02 - 6.03
-  let mondayToday = new Date(); //6.06-12.06 - изначальное значение при запуске (текущая неделя)
+  let mondayToday = new Date(); //изначальное значение при запуске (текущая неделя)
   mondayToday.setDate(mondayToday.getDate() - (mondayToday.getDay() + 6) % 7);
   const [monday, setMonday] = useState(mondayToday);
   let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];

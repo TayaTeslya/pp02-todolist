@@ -29,7 +29,7 @@ app.all('*', function(req, res, next) {
 
 app.get("/weekNotes", function(req, res) {
     connection.query(
-        'select * from weekNotes where (dateWeekNote >= ' + req.query.firstDateNotes + ' and dateWeekNote <= ' + req.query.lastDateNotes + ')',
+        'select * from weekNotes where (dateWeekNote >= "' + req.query.firstDateNotes + '" and dateWeekNote <= "' + req.query.lastDateNotes + '")',
         function(err, results, fields) {
             res.send(results); //можем использовать результат запроса в app.js 
         }
@@ -38,7 +38,7 @@ app.get("/weekNotes", function(req, res) {
 
 app.post('/weekNotes', function(req, res) {
     connection.query(
-        'insert into weekNotes (dateWeekNote, textWeekNote) values (' + req.body.dateWeekNote + ', ' + req.body.textWeekNote + ')',
+        'insert into weekNotes (dateWeekNote, textWeekNote) values ("' + req.body.dateWeekNote + '", "' + req.body.textWeekNote + '")',
         function(err, results, fields) {
             res.send(err);
         }
@@ -47,11 +47,10 @@ app.post('/weekNotes', function(req, res) {
 
 app.put('/weekNotes', function(req, res) {
     connection.query(
-        ('update weekNotes set dateWeekNote = ' + req.query.dateWeekNote + 
-        ', textWeekNote = ' + req.query.textWeekNote + 
-        ', colorWeekNote = ' + req.query.colorWeekNote + 
-        ', statusWeekNote = ' + req.query.statusWeekNote + 
-        ' where idWeekNote = ' + req.query.idweekNote),
+        ('update weekNotes set textWeekNote = "' + req.body.textNote + 
+        '", colorWeekNote = "' + req.body.colorNote + 
+        '", statusWeekNote = "' + req.body.statusNote + 
+        '" where idWeekNote = ' + req.query.idweekNote),
         function(err, results, fields) {
             res.send(err);
         }
@@ -60,7 +59,7 @@ app.put('/weekNotes', function(req, res) {
 
 app.delete("/weekNotes", function(req, res) {
     connection.query(
-        'delete from weekNotes where idWeekNote = ' + req.query.idweekNote,
+        'delete from weekNotes where idWeekNote = "' + req.query.idweekNote + '"',
         function(err, results, fields) {
             res.send(err);
         }
@@ -89,9 +88,9 @@ app.post('/commonNotes', function(req, res) {
 
 app.put('/commonNotes', function(req, res) {
     connection.query(
-        ('update commonNotes set textCommonNote = "' + req.body.textCommonNote + 
-        '", colorCommonNote = "' + req.body.colorCommonNote + 
-        '", statusCommonNote = "' + req.body.statusCommonNote + 
+        ('update commonNotes set textCommonNote = "' + req.body.textNote + 
+        '", colorCommonNote = "' + req.body.colorNote + 
+        '", statusCommonNote = "' + req.body.statusNote + 
         '" where idCommonNote = "' + req.query.idcommonNote + '"'),
         function(err, results, fields) {
             res.send(err);
@@ -101,7 +100,7 @@ app.put('/commonNotes', function(req, res) {
 
 app.delete("/commonNotes", function(req, res) {
     connection.query(
-        'delete from commonNotes where idCommonNote = ' + req.query.idcommonNote,
+        'delete from commonNotes where idCommonNote = "' + req.query.idcommonNote + '"',
         function(err, results, fields) {
             res.send(err);
         }
