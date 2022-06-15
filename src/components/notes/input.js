@@ -15,18 +15,18 @@ function Input(props) {
     // }, [isPost]);
 
     useEffect(() => {
-        console.log('упс');
+        // console.log('упс');
         if (isChange === '') {
-            // console.log('удаление');
+            console.log('удаление');
             deleteCommonNote();
             setIsPost(true);
         } else if (isChange != null) {
             if (isPost && (!props.note['idCommonNote'] || !props.note['idWeekNote'])) {
-                // console.log('добавление');
+                console.log('добавление');
                 addCommonNote();
                 setIsPost(false);
             } else {
-                // console.log('изменение');
+                console.log('изменение');
                 changeCommonNote();
                 setIsPost(false);
             }
@@ -78,10 +78,11 @@ function Input(props) {
         setIsChange(null);
         if (props.note != '') {
             setNote(props.note['textCommonNote']);
+            setIsPost(Boolean(false));
         } else {
             setNote('');
+            setIsPost(Boolean(true));
         }
-        setIsPost(!Boolean(note));
     }, [props.change]);
 
     return (
